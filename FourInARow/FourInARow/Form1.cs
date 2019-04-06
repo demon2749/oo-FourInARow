@@ -52,11 +52,13 @@ namespace FourInARow
                 if (player == "Red")
                 {
                     UpdateImage(column, myTable.columnWeight[column] - 1);
+                    // check for win
                     Set_activePlayer("Blue");
                 }
                 else if (player == "Blue")
                 {
                     UpdateImage(column, myTable.columnWeight[column] - 1);
+                    // check for win
                     Set_activePlayer("Red");
                 }
             }
@@ -234,26 +236,6 @@ namespace FourInARow
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             AnyPlayerDrop(0);
@@ -287,6 +269,55 @@ namespace FourInARow
         private void button7_Click(object sender, EventArgs e)
         {
             AnyPlayerDrop(6);
+        }
+
+        private void ResetBoard(object sender, EventArgs e)
+        {
+            myTable = new Table();
+            Set_activePlayer("Red");
+
+            pictureBox1.Image = null;
+            pictureBox2.Image = null;
+            pictureBox3.Image = null;
+            pictureBox4.Image = null;
+            pictureBox5.Image = null;
+            pictureBox6.Image = null;
+            pictureBox7.Image = null;
+            pictureBox8.Image = null;
+            pictureBox9.Image = null;
+            pictureBox10.Image = null;
+            pictureBox11.Image = null;
+            pictureBox12.Image = null;
+            pictureBox13.Image = null;
+            pictureBox14.Image = null;
+            pictureBox15.Image = null;
+            pictureBox16.Image = null;
+            pictureBox17.Image = null;
+            pictureBox18.Image = null;
+            pictureBox19.Image = null;
+            pictureBox20.Image = null;
+            pictureBox21.Image = null;
+            pictureBox22.Image = null;
+            pictureBox23.Image = null;
+            pictureBox24.Image = null;
+            pictureBox25.Image = null;
+            pictureBox26.Image = null;
+            pictureBox27.Image = null;
+            pictureBox28.Image = null;
+            pictureBox29.Image = null;
+            pictureBox30.Image = null;
+            pictureBox31.Image = null;
+            pictureBox32.Image = null;
+            pictureBox33.Image = null;
+            pictureBox34.Image = null;
+            pictureBox35.Image = null;
+            pictureBox36.Image = null;
+            pictureBox37.Image = null;
+            pictureBox38.Image = null;
+            pictureBox39.Image = null;
+            pictureBox40.Image = null;
+            pictureBox41.Image = null;
+            pictureBox42.Image = null;
         }
     }
 }

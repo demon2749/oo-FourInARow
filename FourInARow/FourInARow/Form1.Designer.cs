@@ -345,6 +345,7 @@
             this.button8.TabIndex = 0;
             this.button8.Text = "Reset";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.ResetBoard);
             // 
             // pictureBox43
             // 

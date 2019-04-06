@@ -30,11 +30,7 @@ namespace FourInARow
                 {
                     myBoard[column, columnWeight[column]] = 2;
                 }
-
-                CheckForWin(column, columnWeight[column], player);
                 columnWeight[column]++;
-                // wait to update, so that [column, columnWeight[column]]
-                // are the points in the array we want to update the image at.
                 return 1; // return with successful peice drop.
             }
             else
