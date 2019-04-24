@@ -20,7 +20,11 @@ namespace FourInARow
         }
 
         Image currentPlayer;
+
         Table myTable;
+        Player player1 = new Player("Red", FourInARow.Properties.Resources.Red);
+        Player player2 = new Player("Blue", FourInARow.Properties.Resources.Blue);
+
 
         private string Get_activePlayer()
         {
