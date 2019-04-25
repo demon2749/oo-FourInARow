@@ -672,6 +672,7 @@
             this.button9.TabIndex = 1;
             this.button9.Text = "Save";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -702,7 +703,7 @@
             this.Controls.Add(this.activePlayer);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Four in a Row v0.2";
+            this.Text = "Four in a Row v0.8";
             this.boxMatch.ResumeLayout(false);
             this.board.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).EndInit();

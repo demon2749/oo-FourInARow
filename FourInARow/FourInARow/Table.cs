@@ -18,6 +18,8 @@ namespace FourInARow
         public Piece[,] Board = new Piece[10, 10];
         public int[] columnWeight = new int[10];
 
+        public Table() { }
+
         public Table(Player r, Player b)
         {
             this.Red = r;
@@ -44,7 +46,7 @@ namespace FourInARow
 
         public Player Get_activePlayer()
         {
-            if (activePlayer.Name == "Red")
+            if (activePlayer.Name == Red.Name)
             {
                 return Red;
             }
@@ -56,11 +58,11 @@ namespace FourInARow
 
         public void Set_activePlayer(Player newActivePlayer)
         {
-            if (newActivePlayer.Name == "Red")
+            if (newActivePlayer.Name == Red.Name)
             {
                 activePlayer = Red;
             }
-            else if (newActivePlayer.Name == "Blue")
+            else if (newActivePlayer.Name == Blue.Name)
             {
                 activePlayer = Blue;
             }

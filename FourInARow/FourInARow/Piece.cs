@@ -13,6 +13,8 @@ namespace FourInARow
         public int Row { get; set; }
         public Player Player;
 
+        public Piece() { }
+
         public Piece(Player myPlayer, int col, int row)
         {
             this.Player = myPlayer;

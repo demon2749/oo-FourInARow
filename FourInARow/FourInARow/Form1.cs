@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace FourInARow
 {
@@ -34,14 +36,13 @@ namespace FourInARow
             {
                 UpdateImage(newPiece);
                 winner = myTable.CheckForWin(newPiece);
-                //Console.WriteLine("Placed a " + newPiece.Player.Name + " Piece at " + newPiece.Column + ", " + newPiece.Row + ".");
 
-                if (player.Name == "Red")
+                if (player.Name == Red.Name)
                 {
                     myTable.Set_activePlayer(Blue);
                     UpdateActivePlayer(myTable.Get_activePlayer());
                 }
-                else if (player.Name == "Blue")
+                else if (player.Name == Blue.Name)
                 {
                     myTable.Set_activePlayer(Red);
                     UpdateActivePlayer(myTable.Get_activePlayer());
@@ -221,9 +222,6 @@ namespace FourInARow
                             break;
                     }
                     break;
-                default:
-                    Console.WriteLine("Error in updating column image.");
-                    break;
             }
 
         }
@@ -313,6 +311,15 @@ namespace FourInARow
             AnyPlayerDrop(7);
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Save mySave = new Save(myTable);
+            XmlSerializer writer = new XmlSerializer(typeof(Save));
+            FileStream saveFile = File.Create(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "GameSave.xml");
+
+            writer.Serialize(saveFile, mySave);
+            saveFile.Close();
+        }
     }
 }
 
