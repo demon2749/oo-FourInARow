@@ -13,7 +13,7 @@ namespace FourInARow
         public Image Picture { get; set; }
         public int Id { get; set; }
 
-        public Player(string name, Image picture, bool isActive)
+        public Player(string name, Image picture)
         {
             this.Name = name;
             this.Picture = picture;

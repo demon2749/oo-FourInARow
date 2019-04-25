@@ -20,8 +20,8 @@ namespace FourInARow
             this.Blue = b;
         }
 
-        public Piece[,] Board = new Piece[8,7];
-        public int[] columnWeight = new int[7];
+        public Piece[,] Board = new Piece[10,10];
+        public int[] columnWeight = new int[8];
 
         public int UpdateTable(int column, Player player)
         {

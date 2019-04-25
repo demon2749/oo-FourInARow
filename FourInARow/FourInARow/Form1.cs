@@ -13,8 +13,8 @@ namespace FourInARow
     public partial class Form1 : Form
     {
         Table myTable;
-        Player Red = new Player("Red", FourInARow.Properties.Resources.Red, true);
-        Player Blue = new Player("Blue", FourInARow.Properties.Resources.Blue, false);
+        Player Red = new Player("Red", FourInARow.Properties.Resources.Red);
+        Player Blue = new Player("Blue", FourInARow.Properties.Resources.Blue);
 
         public Form1()
         {
