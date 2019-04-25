@@ -13,6 +13,7 @@ namespace FourInARow
     public class Player
     {
         public string Name { get; set; }
+        [XmlIgnore]
         public Image Picture { get; set; }
 
         public Player() { }

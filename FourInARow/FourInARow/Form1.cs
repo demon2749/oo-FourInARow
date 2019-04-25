@@ -315,7 +315,7 @@ namespace FourInARow
         {
             Save mySave = new Save(myTable);
             XmlSerializer writer = new XmlSerializer(typeof(Save));
-            FileStream saveFile = File.Create(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "GameSave.xml");
+            FileStream saveFile = File.Create(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/GameSave.xml");
 
             writer.Serialize(saveFile, mySave);
             saveFile.Close();
