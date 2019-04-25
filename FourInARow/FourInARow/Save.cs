@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace FourInARow
 {
     public class Save
     {
-        private Player activePlayer;
+        public Player activePlayer;
         public bool gameWon;
         public Piece[] Pieces = new Piece[100];
         public int[] columnWeight;
@@ -33,6 +34,21 @@ namespace FourInARow
                     l++;
                 }
             }
+        }
+
+        public void LoadSave(Table t, Player r, Player b)
+        {
+
+            if(activePlayer.Name == r.Name)
+            {
+                t.Set_activePlayer(r);
+            }
+            else
+            {
+                t.Set_activePlayer(b);
+            }
+
+            t.gameWon = this.gameWon;
         }
     }
 }

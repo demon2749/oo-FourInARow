@@ -320,6 +320,53 @@ namespace FourInARow
             writer.Serialize(saveFile, mySave);
             saveFile.Close();
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            var saveFile = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/GameSave.xml";
+            XmlSerializer reader = new XmlSerializer(typeof(Save));
+            StreamReader file = new StreamReader(@saveFile);
+            Save mySave = (Save)reader.Deserialize(file);
+            file.Close();
+
+
+            ResetBoard(sender, e);
+            mySave.LoadSave(myTable, Red, Blue);
+
+            // Rebuild board from the bototm up... its the easier way i guess.  :(
+            int l = 0;
+            Player temp;
+            for (int j = 0; j < 9; j++)
+            {
+                for (int k = 0; k < 9; k++)
+                {
+                    if(mySave.Pieces[l] != null)
+                    {
+
+                        if (mySave.Pieces[l].Player.Name == Red.Name)
+                        {
+                            temp = Red;
+                        }
+                        else
+                        {
+                            temp = Blue;
+                        }
+
+                        Player player = temp;
+                        Piece newPiece = new Piece(player, mySave.Pieces[l].Column, myTable.columnWeight[mySave.Pieces[l].Column]);
+
+                        if (newPiece.Place(myTable) == true) // is true if the piece was successfully created.
+                        {
+                            UpdateImage(newPiece);
+                        }
+                    }
+
+                    l++;
+                }
+            }
+            UpdateActivePlayer(myTable.Get_activePlayer());
+        }
     }
 }
 
