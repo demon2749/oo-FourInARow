@@ -704,7 +704,7 @@
             this.Controls.Add(this.activePlayer);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Four in a Row v0.8";
+            this.Text = "Four in a Row v1.0";
             this.boxMatch.ResumeLayout(false);
             this.board.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).EndInit();
