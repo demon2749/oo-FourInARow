@@ -27,12 +27,14 @@ namespace FourInARow
         private void AnyPlayerDrop(int column)
         {
             Player player = myTable.Get_activePlayer();
-            Piece newPiece = new Piece(player, column, myTable.columnWeight[column]+1);
+            Piece newPiece = new Piece(player, column, myTable.columnWeight[column]);
+            bool winner = false;
 
-            if (newPiece.Place(myTable) == 1) // is 1 if the piece was successfully created.
+            if (newPiece.Place(myTable) == true) // is true if the piece was successfully created.
             {
                 UpdateImage(newPiece);
-                myTable.CheckForWin(newPiece);
+                winner = myTable.CheckForWin(newPiece);
+                //Console.WriteLine("Placed a " + newPiece.Player.Name + " Piece at " + newPiece.Column + ", " + newPiece.Row + ".");
 
                 if (player.Name == "Red")
                 {

@@ -11,7 +11,6 @@ namespace FourInARow
     {
         public string Name { get; set; }
         public Image Picture { get; set; }
-        public int Id { get; set; }
 
         public Player(string name, Image picture)
         {

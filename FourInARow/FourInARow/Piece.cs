@@ -20,9 +20,17 @@ namespace FourInARow
             this.Row = row;
         }
 
-        public int Place(Table myTable)
+        public bool Place(Table myTable)
         {
-            return myTable.UpdateTable(this.Column, this.Player);
+            if (myTable.gameWon == false)
+            {
+                return myTable.UpdateTable(this.Column, this.Player);
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
