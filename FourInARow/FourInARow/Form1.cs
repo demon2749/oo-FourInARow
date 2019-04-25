@@ -18,7 +18,6 @@ namespace FourInARow
 
         public Form1()
         {
-
             InitializeComponent();
             Set_activePlayer(Red);
             myTable = new Table();
@@ -36,14 +35,12 @@ namespace FourInARow
                 Red.Active = true;
                 Blue.Active = false;
                 pictureBox43.Image = Red.Picture;
-                pictureBox43.Refresh();
             }
             else if (newActivePlayer.Name == "Blue")
             {
                 Red.Active = false;
                 Blue.Active = true;
                 pictureBox43.Image = Blue.Picture;
-                pictureBox43.Refresh();
             }
             activePlayer.Text = newActivePlayer.Name;
         }
@@ -51,186 +48,186 @@ namespace FourInARow
         private void AnyPlayerDrop(int column)
         {
             Player player = Get_activePlayer();
-            if (myTable.UpdateTable(column, player) == 1)
+            Piece newPiece = new Piece(player, column, myTable.columnWeight[column]+1);
+
+            if (newPiece.Place(myTable) == 1) // is 1 if the piece was successfully created.
             {
+                UpdateImage(newPiece);
+                myTable.CheckForWin(newPiece);
+
                 if (player.Name == "Red")
                 {
-                    UpdateImage(column, myTable.columnWeight[column] - 1);
-                    // check for win
                     Set_activePlayer(Blue);
                 }
                 else if (player.Name == "Blue")
                 {
-                    UpdateImage(column, myTable.columnWeight[column] - 1);
-                    // check for win
                     Set_activePlayer(Red);
                 }
             }
         }
 
-        public void UpdateImage(int column, int row)
+        public void UpdateImage(Piece Piece)
         {
-
-            Image currentPlayer = Get_activePlayer().Picture;
-            switch (column)
+            Image currentPlayer = Piece.Player.Picture;
+            switch (Piece.Column)
             {
-                case 0:
-                    switch (row)
+                case 1:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox36.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox29.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox22.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox15.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox8.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox1.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 1:
-                    switch (row)
+                case 2:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox37.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox30.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox23.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox16.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox9.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox2.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 2:
-                    switch (row)
+                case 3:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox38.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox31.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox24.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox17.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox10.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox3.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 3:
-                    switch (row)
+                case 4:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox39.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox32.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox25.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox18.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox11.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox4.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 4:
-                    switch (row)
+                case 5:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox40.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox33.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox26.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox19.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox12.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox5.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 5:
-                    switch (row)
+                case 6:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox41.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox34.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox27.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox20.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox13.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox6.Image = currentPlayer;
                             break;
                     }
                     break;
-                case 6:
-                    switch (row)
+                case 7:
+                    switch (Piece.Row)
                     {
-                        case 0:
+                        case 1:
                             pictureBox42.Image = currentPlayer;
                             break;
-                        case 1:
+                        case 2:
                             pictureBox35.Image = currentPlayer;
                             break;
-                        case 2:
+                        case 3:
                             pictureBox28.Image = currentPlayer;
                             break;
-                        case 3:
+                        case 4:
                             pictureBox21.Image = currentPlayer;
                             break;
-                        case 4:
+                        case 5:
                             pictureBox14.Image = currentPlayer;
                             break;
-                        case 5:
+                        case 6:
                             pictureBox7.Image = currentPlayer;
                             break;
                     }
@@ -293,37 +290,37 @@ namespace FourInARow
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(0);
+            AnyPlayerDrop(1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(1);
+            AnyPlayerDrop(2);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(2);
+            AnyPlayerDrop(3);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(3);
+            AnyPlayerDrop(4);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(4);
+            AnyPlayerDrop(5);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(5);
+            AnyPlayerDrop(6);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            AnyPlayerDrop(6);
+            AnyPlayerDrop(7);
         }
 
     }

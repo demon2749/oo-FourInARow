@@ -12,17 +12,17 @@ namespace FourInARow
     {
         public Table()
         {
-            //
+            // do nothing in particular.
         }
 
-        public int[,] myBoard = new int[7, 6];
+        public Piece[,] Board = new Piece[8,7];
         public int[] columnWeight = new int[7];
 
         public int UpdateTable(int column, Player player)
         {
             if (columnWeight[column] <= 5)
             {
-                myBoard[column, columnWeight[column]] = player.Id;
+                Board[column, columnWeight[column]] = new Piece(player, column, columnWeight[column]);
                 columnWeight[column]++;
                 return 1; // return with successful peice drop.
             }
@@ -32,11 +32,10 @@ namespace FourInARow
             }
         }
 
-        public void CheckForWin(int column, int row, Player player)
+        public void CheckForWin(Piece placedPiece)
         {
-            Piece placedPiece = new Piece();
-
             //check all based on just placed peice.
+
         }
     }
 }
