@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FourInARow
 {
-    class Table
+    public class Table
     {
         public Table()
         {
@@ -18,18 +18,11 @@ namespace FourInARow
         public int[,] myBoard = new int[7, 6];
         public int[] columnWeight = new int[7];
 
-        public int UpdateTable(int column, string player)
+        public int UpdateTable(int column, Player player)
         {
             if (columnWeight[column] <= 5)
             {
-                if (player == "Red")
-                {
-                    myBoard[column, columnWeight[column]] = 1;
-                }
-                else
-                {
-                    myBoard[column, columnWeight[column]] = 2;
-                }
+                myBoard[column, columnWeight[column]] = player.Id;
                 columnWeight[column]++;
                 return 1; // return with successful peice drop.
             }
@@ -39,8 +32,10 @@ namespace FourInARow
             }
         }
 
-        public void CheckForWin(int column, int row, string player)
+        public void CheckForWin(int column, int row, Player player)
         {
+            Piece placedPiece = new Piece();
+
             //check all based on just placed peice.
         }
     }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FourInARow
 {
-    class Piece
+    public class Piece
     {
+        public int[] Loc;
+        
+
+
     }
 }

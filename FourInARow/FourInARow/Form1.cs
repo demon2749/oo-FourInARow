@@ -12,64 +12,66 @@ namespace FourInARow
 {
     public partial class Form1 : Form
     {
+        Table myTable;
+        Player Red = new Player("Red", FourInARow.Properties.Resources.Red, true);
+        Player Blue = new Player("Blue", FourInARow.Properties.Resources.Blue, false);
+
         public Form1()
         {
+
             InitializeComponent();
-            Set_activePlayer("Red");
+            Set_activePlayer(Red);
             myTable = new Table();
         }
 
-        Image currentPlayer;
-
-        Table myTable;
-        Player player1 = new Player("Red", FourInARow.Properties.Resources.Red);
-        Player player2 = new Player("Blue", FourInARow.Properties.Resources.Blue);
-
-
-        private string Get_activePlayer()
+        private Player Get_activePlayer()
         {
-            return activePlayer.Text;
+            if(activePlayer.Text == "Red"){ return Red; }else{ return Blue; }
         }
 
-        private void Set_activePlayer(string newActivePlayer)
+        private void Set_activePlayer(Player newActivePlayer)
         {
-            if (newActivePlayer == "Red")
+            if (newActivePlayer.Name == "Red")
             {
-                currentPlayer = FourInARow.Properties.Resources.Red;
-                pictureBox43.Image = currentPlayer;
+                Red.Active = true;
+                Blue.Active = false;
+                pictureBox43.Image = Red.Picture;
                 pictureBox43.Refresh();
             }
-            else if (newActivePlayer == "Blue")
+            else if (newActivePlayer.Name == "Blue")
             {
-                currentPlayer = FourInARow.Properties.Resources.Blue;
-                pictureBox43.Image = currentPlayer;
+                Red.Active = false;
+                Blue.Active = true;
+                pictureBox43.Image = Blue.Picture;
                 pictureBox43.Refresh();
             }
-            activePlayer.Text = newActivePlayer;
+            activePlayer.Text = newActivePlayer.Name;
         }
 
         private void AnyPlayerDrop(int column)
         {
-            string player = Get_activePlayer();
+            Player player = Get_activePlayer();
             if (myTable.UpdateTable(column, player) == 1)
             {
-                if (player == "Red")
+                if (player.Name == "Red")
                 {
                     UpdateImage(column, myTable.columnWeight[column] - 1);
                     // check for win
-                    Set_activePlayer("Blue");
+                    Set_activePlayer(Blue);
                 }
-                else if (player == "Blue")
+                else if (player.Name == "Blue")
                 {
                     UpdateImage(column, myTable.columnWeight[column] - 1);
                     // check for win
-                    Set_activePlayer("Red");
+                    Set_activePlayer(Red);
                 }
             }
         }
 
         public void UpdateImage(int column, int row)
         {
+
+            Image currentPlayer = Get_activePlayer().Picture;
             switch (column)
             {
                 case 0:
@@ -240,45 +242,10 @@ namespace FourInARow
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(0);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(1);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(2);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(3);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(4);
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(5);
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            AnyPlayerDrop(6);
-        }
-
         private void ResetBoard(object sender, EventArgs e)
         {
             myTable = new Table();
-            Set_activePlayer("Red");
+            Set_activePlayer(Red);
 
             pictureBox1.Image = null;
             pictureBox2.Image = null;
@@ -323,6 +290,42 @@ namespace FourInARow
             pictureBox41.Image = null;
             pictureBox42.Image = null;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(0);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(2);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(3);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(4);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(5);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AnyPlayerDrop(6);
+        }
+
     }
 }
 
