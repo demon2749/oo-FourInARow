@@ -19,35 +19,14 @@ namespace FourInARow
         public Form1()
         {
             InitializeComponent();
-            Set_activePlayer(Red);
-            myTable = new Table();
-        }
-
-        private Player Get_activePlayer()
-        {
-            if(activePlayer.Text == "Red"){ return Red; }else{ return Blue; }
-        }
-
-        private void Set_activePlayer(Player newActivePlayer)
-        {
-            if (newActivePlayer.Name == "Red")
-            {
-                Red.Active = true;
-                Blue.Active = false;
-                pictureBox43.Image = Red.Picture;
-            }
-            else if (newActivePlayer.Name == "Blue")
-            {
-                Red.Active = false;
-                Blue.Active = true;
-                pictureBox43.Image = Blue.Picture;
-            }
-            activePlayer.Text = newActivePlayer.Name;
+            myTable = new Table(Red, Blue);
+            myTable.Set_activePlayer(Red);
+            UpdateActivePlayer(myTable.Get_activePlayer());
         }
 
         private void AnyPlayerDrop(int column)
         {
-            Player player = Get_activePlayer();
+            Player player = myTable.Get_activePlayer();
             Piece newPiece = new Piece(player, column, myTable.columnWeight[column]+1);
 
             if (newPiece.Place(myTable) == 1) // is 1 if the piece was successfully created.
@@ -57,13 +36,21 @@ namespace FourInARow
 
                 if (player.Name == "Red")
                 {
-                    Set_activePlayer(Blue);
+                    myTable.Set_activePlayer(Blue);
+                    UpdateActivePlayer(myTable.Get_activePlayer());
                 }
                 else if (player.Name == "Blue")
                 {
-                    Set_activePlayer(Red);
+                    myTable.Set_activePlayer(Red);
+                    UpdateActivePlayer(myTable.Get_activePlayer());
                 }
             }
+        }
+
+        public void UpdateActivePlayer(Player newActivePlayer)
+        {
+            pictureBox43.Image = newActivePlayer.Picture;
+            activePlayer.Text = newActivePlayer.Name;
         }
 
         public void UpdateImage(Piece Piece)
@@ -241,8 +228,9 @@ namespace FourInARow
 
         private void ResetBoard(object sender, EventArgs e)
         {
-            myTable = new Table();
-            Set_activePlayer(Red);
+            myTable = new Table(Red, Blue);
+            myTable.Set_activePlayer(Red);
+            UpdateActivePlayer(myTable.Get_activePlayer());
 
             pictureBox1.Image = null;
             pictureBox2.Image = null;

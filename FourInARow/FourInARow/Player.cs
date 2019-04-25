@@ -11,28 +11,12 @@ namespace FourInARow
     {
         public string Name { get; set; }
         public Image Picture { get; set; }
-        public bool Active { get; set; }
         public int Id { get; set; }
 
         public Player(string name, Image picture, bool isActive)
         {
             this.Name = name;
             this.Picture = picture;
-            this.Active = isActive;
-        }
-
-        public bool ToggleActive()
-        {
-            if(this.Active == true)
-            {
-                this.Active = false;
-            }
-            else
-            {
-                this.Active = true;
-            }
-
-            return this.Active;
         }
 
     }

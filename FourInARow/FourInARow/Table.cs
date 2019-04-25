@@ -10,9 +10,14 @@ namespace FourInARow
 {
     public class Table
     {
-        public Table()
+        private Player activePlayer;
+        public Player Red;
+        public Player Blue;
+
+        public Table(Player r, Player b)
         {
-            // do nothing in particular.
+            this.Red = r;
+            this.Blue = b;
         }
 
         public Piece[,] Board = new Piece[8,7];
@@ -30,6 +35,31 @@ namespace FourInARow
             {
                 return 0;
             }
+        }
+
+        public Player Get_activePlayer()
+        {
+            if (activePlayer.Name == "Red")
+            {
+                return Red;
+            }
+            else
+            {
+                return Blue;
+            }
+        }
+
+        public void Set_activePlayer(Player newActivePlayer)
+        {
+            if (newActivePlayer.Name == "Red")
+            {
+                activePlayer = Red;
+            }
+            else if (newActivePlayer.Name == "Blue")
+            {
+                activePlayer = Blue;
+            }
+
         }
 
         public void CheckForWin(Piece placedPiece)
